@@ -2,19 +2,19 @@
 #include <stdlib.h>
 
 // Iterative method for fibonacci
-int iterative(int cycles) {
+long iterative(int cycles) {
     
     // Initialize variables
-    int x = 0;
-    int y = 1;
-    int z = 1;
+    long x = 0;
+    long y = 1;
+    long z = 1;
     
     for(int i = 0; i < cycles-2; i++) {
         x = y;
         y = z;
         z = x + y;
     }
-    return z;
+    return (long) z;
 }
 
 // Recursive method for fibonacci
@@ -65,7 +65,7 @@ int main(int argc, char *argv[]) {
     else
         nthFibonacciNumber = recursive(N);
 
-    printf("Your nth Fibonacci number is: %d\n", nthFibonacciNumber);
+    printf("Your nth Fibonacci number is: %ld\n", nthFibonacciNumber);
 
     return 1;
 }
