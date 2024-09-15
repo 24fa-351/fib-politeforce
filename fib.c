@@ -14,28 +14,29 @@ long iterative(int cycles) {
         y = z;
         z = x + y;
     }
-    return (long) z;
+    return z;
 }
 
 // Recursive method for fibonacci
-int recursive(int cycles) {
+long recursive(long cycles) {
     if(cycles == 0 || cycles == 1)
         return cycles;
+
     return recursive(cycles-1) + recursive(cycles-2);
 }
 
-int main(int argc, char *argv[]) {
-    
+int main(int argc, char **argv) {
     // Initialize variables
     auto FILE* fptr;
-    char fileName[100];
-    int firstInteger;
+    char* fileName = argv[3];
+    int firstInteger = *(argv[1]) - '0';
     int fileInteger;
     int N;
     int nthFibonacciNumber;
-    char recursiveOrIterate;
-    
+    char recursiveOrIterate = *(argv[2]);
     // Ask user for initial integer
+
+    /*
     printf("Enter an integer: ");
     scanf("%d%*c", &firstInteger);
     printf("Your integer was %d\n\n", firstInteger);
@@ -48,24 +49,27 @@ int main(int argc, char *argv[]) {
     // Ask user for file name
     printf("Enter file name: ");
     scanf("%s", fileName);
+
+    */
+
     fptr = fopen(fileName, "r");
     if (fptr == NULL) {  
         perror("Error opening the file");  
-        return 1;  
+        return 0;  
     }  
     fileInteger = fscanf(fptr, "%s", fileName);
     fileInteger = atoi(fileName);
-    printf("The number in file was %d\n\n", fileInteger);
+    //printf("The number in file was %d\n\n", fileInteger);
     N = fileInteger + firstInteger;
-    printf("N is: %d\n", N);
-
+    // printf("N is: %d\n", N);
+    N -= 1;
     // Run iterative or recursive methods
     if(recursiveOrIterate == 'i')
         nthFibonacciNumber = iterative(N);
     else
         nthFibonacciNumber = recursive(N);
 
-    printf("Your nth Fibonacci number is: %ld\n", nthFibonacciNumber);
-
-    return 1;
+    printf("%ld", nthFibonacciNumber);
+    
+    return nthFibonacciNumber;
 }
